@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Colour Request | Bloom & Glow</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, serif;
+            background: #fffaf7;
+            color: #684c4c;
+            text-align: center;
+        }
+
+        header {
+            background: #fce8e8;
+            padding: 25px;
+        }
+
+        h1, h2 {
+            color: #b75d78;
+        }
+
+        .contact-box {
+            max-width: 650px;
+            margin: 40px auto;
+            padding: 35px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px #e9cfd4;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 13px;
+            margin: 10px 0 18px;
+            border: 1px solid #d9a8b7;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            color: #8e5267;
+            font-weight: bold;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 14px 25px;
+            background: #bd6c85;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .contact-btn:hover {
+            background: #93445f;
+        }
+
+        .back {
+            display: inline-block;
+            margin: 25px;
+            color: #b75d78;
+        }
+
+        .info {
+            background: #fff0f2;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .message {
+            color: #287447;
+            background: #e9f8ee;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            padding: 20px;
+            background: #fce8e8;
+        }
+
+        @media(max-width: 700px) {
+            .contact-box {
+                margin: 25px 15px;
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Bloom & Glow 🌷</h1>
+    <h2>Custom Colour Requests 💌</h2>
+</header>
+
+<div class="contact-box">
+
+    <h2>Make Your Order Special! 💗</h2>
+
+    <p>
+        Want a different colour combination for your flowers,
+        candles or bouquets? We would love to create it for you!
+    </p>
+
+    <div class="info">
+        <strong>How it works:</strong>
+        <p>Enter your Order ID and tell us which colours you would like.
+        Our seller will review your request and contact you.</p>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+            <div class="message">{{ message }}</div>
+        {% endfor %}
+    {% endwith %}
+
+    <form action="{{ url_for('customization_request') }}" method="POST">
+
+        <label for="order_id">Order ID</label>
+        <input
+            type="text"
+            id="order_id"
+            name="order_id"
+            placeholder="Enter your Order ID"
+            required>
+
+        <label for="product">Product Name</label>
+        <input
+            type="text"
+            id="product"
+            name="product"
+            placeholder="Example: Pink Rose Bouquet"
+            required>
+
+        <label for="colours">Preferred Colour Combination</label>
+        <input
+            type="text"
+            id="colours"
+            name="colours"
+            placeholder="Example: Pink, White and Lavender"
+            required>
+
+        <label for="details">Additional Details</label>
+        <textarea
+            id="details"
+            name="details"
+            placeholder="Describe how you want your product to look..."></textarea>
+
+        <button type="submit" class="contact-btn">
+            Send Custom Request 💌
+        </button>
+
+    </form>
+
+    <hr>
+
+    <h3>Need Help?</h3>
+    <p>Instagram: @__rakshapm__</p>
+    <p>WhatsApp: +91 6363831229</p>
+
+    <a class="contact-btn"
+       href="https://www.instagram.com/__rakshapm__/"
+       target="_blank" rel="noopener">
+        Instagram 📸
+    </a>
+
+    <a class="contact-btn"
+       href="https://wa.me/916363831229"
+       target="_blank" rel="noopener">
+        WhatsApp 💬
+    </a>
+
+    <br>
+
+    <a href="{{ url_for('home') }}" class="back">
+        ← Back to Home
+    </a>
+
+</div>
+
+<footer>
+    © 2026 Bloom & Glow | Made with Love ♡
+</footer>
+
+</body>
+</html>

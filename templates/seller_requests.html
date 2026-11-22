@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seller Requests</title>
+</head>
+<body>
+
+    <h1>Welcome, Seller!</h1>
+
+    <h2>Customer Requests</h2>
+
+    {% if requests %}
+
+    <table border="1" cellpadding="10">
+
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Status</th>
+        </tr>
+
+        {% for item in requests %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.customer_name }}</td>
+            <td>{{ item.product_name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.status }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    {% else %}
+
+    <p>No customer requests available.</p>
+
+    {% endif %}
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+</body>
+</html>

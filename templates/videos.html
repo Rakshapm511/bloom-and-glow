@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videos | Bloom & Glow</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Georgia, serif;
+            background: #fffaf7;
+            color: #684c4c;
+            text-align: center;
+        }
+
+        header {
+            background: #fce8e8;
+            padding: 25px;
+            color: #b75d78;
+        }
+
+        .container {
+            padding: 40px 8%;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px #e9cfd4;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        h2, h3 {
+            color: #b75d78;
+        }
+
+        .back {
+            display: inline-block;
+            margin: 30px;
+            padding: 12px 25px;
+            background: #bd6c85;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+        }
+
+        @media(max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Bloom & Glow 🌷</h1>
+    <h2>Our Handmade Videos 🎥</h2>
+    <p>Watch our beautiful handmade creations.</p>
+</header>
+
+<div class="container">
+
+    <div class="video-grid">
+
+        <div class="card">
+            <video controls>
+                <source src="{{ url_for('static', filename='videos/10.mp4') }}" type="video/mp4">
+            </video>
+            <h3>Handmade pink lilly Flowers Bouquets 🌷</h3>
+        </div>
+
+        <div class="card">
+            <video controls>
+                <source src="{{ url_for('static', filename='videos/9.mp4') }}" type="video/mp4">
+            </video>
+            <h3>Handmade pink lilly Flowers Bouquets with green leafs🌷</h3>
+        </div>
+
+        <div class="card">
+            <video controls>
+                <source src="{{ url_for('static', filename='videos/8.mp4') }}" type="video/mp4">
+            </video>
+            <h3> blue lilly Flowers Bouquets with blue tulip </h3>
+        </div>
+
+        <div class="card">
+            <video controls>
+                <source src="{{ url_for('static', filename='videos/6.mp4') }}" type="video/mp4">
+            </video>
+            <h3>pipe cleaner diffrent lilly Flowers Bouquets </h3>
+        </div>
+
+        <div class="card">
+            <video controls>
+                <source src="{{ url_for('static', filename='videos/10.mp4') }}" type="video/mp4">
+            </video>
+            <h3>blue evil eye themed lilly Flowers Bouquets with blue tulip</h3>
+        </div>
+
+        <div class="card">
+            <video controls>
+                <source src="{{ url_for('static', filename='videos/candle.mp4') }}" type="video/mp4">
+            </video>
+            <h3>Handmade Candles 🕯️</h3>
+        </div>
+
+        <div class="card">
+            <video controls>
+                <source src="{{ url_for('static', filename='videos/bouquet.mp4') }}" type="video/mp4">
+            </video>
+            <h3>Beautiful Bouquets 💐</h3>
+        </div>
+
+    </div>
+
+    <a href="{{ url_for('home') }}" class="back">← Back to Home</a>
+
+</div>
+
+</body>
+</html>

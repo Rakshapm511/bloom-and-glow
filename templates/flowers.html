@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pipe Cleaner Flowers | Bloom & Glow</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Georgia, serif;
+}
+
+.collection {
+    min-height: 100vh;
+    padding: 100px 7%;
+    text-align: center;
+    background: #fff7f5;
+}
+
+.collection-tag {
+    color: #c87991;
+    letter-spacing: 4px;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.collection h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    color: #593d46;
+    margin-bottom: 20px;
+}
+
+.collection-subtitle {
+    color: #806d70;
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 70px;
+}
+
+.collection-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.flower-card {
+    background: white;
+    padding: 22px;
+    border-radius: 24px;
+    box-shadow: 0 8px 30px rgba(180, 120, 140, 0.10);
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.flower-card:hover {
+    transform: translateY(-8px);
+}
+
+.flower-card img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    border-radius: 18px;
+    margin-bottom: 25px;
+}
+
+.flower-card h3 {
+    color: #593d46;
+    font-size: 23px;
+    margin-bottom: 15px;
+}
+
+.flower-card p {
+    color: #806d70;
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.flower-card h2 {
+    color: #c05e7e;
+    font-size: 23px;
+}
+
+.add-cart-btn {
+    background: #bd6c85;
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 30px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+.add-cart-btn:hover {
+    background: #93445f;
+    transform: scale(1.04);
+}
+
+.cart-link {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    z-index: 1000;
+    background: #bd6c85;
+    color: white;
+    padding: 13px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px #e9cfd4;
+}
+
+.order-btn {
+    display: inline-block;
+    background: #d77e9b;
+    color: white;
+    text-decoration: none;
+    padding: 15px 32px;
+    border-radius: 30px;
+    margin-top: 35px;
+}
+
+@media (max-width: 950px) {
+    .collection-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .flower-card img {
+        height: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    .collection {
+        padding: 65px 7%;
+    }
+
+    .collection-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .collection-subtitle {
+        font-size: 15px;
+        margin-bottom: 40px;
+    }
+
+    .flower-card img {
+        height: 320px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<section class="collection" id="collection">
+
+    <p class="collection-tag">OUR HANDMADE CREATIONS ♡</p>
+
+    <h2>Explore Our Flower Collection 🌷</h2>
+
+    <p class="collection-subtitle">
+        Beautiful flowers, handmade with care and love.
+    </p>
+
+    <div class="collection-container">
+
+        <!-- PRETTY LILY -->
+        <div class="flower-card">
+            <img src="{{ url_for('static', filename='images/1.jpg') }}" alt="Pretty Lily">
+            <h3>Pretty Lily</h3>
+            <p>A beautiful handmade flower for someone special.</p>
+            <h2>₹50</h2>
+
+            <button class="add-cart-btn"
+                data-name="Pretty Lily"
+                data-price="50"
+                data-image="{{ url_for('static', filename='images/1.jpg') }}">
+                Add to Cart 🛒
+            </button>
+        </div>
+
+        <!-- COLORFUL DAISY -->
+        <div class="flower-card">
+            <img src="{{ url_for('static', filename='images/flower.jpg') }}" alt="Colorful Daisy Bouquet">
+            <h3>Colorful Daisy Bouquet</h3>
+            <p>Bright and colorful flowers to make your day.</p>
+            <h2>₹50</h2>
+
+            <button class="add-cart-btn"
+                data-name="Colorful Daisy Bouquet"
+                data-price="50"
+                data-image="{{ url_for('static', filename='images/flower.jpg') }}">
+                Add to Cart 🛒
+            </button>
+        </div>
+
+        <!-- PINK ROSE -->
+        <div class="flower-card">
+            <img src="{{ url_for('static', filename='images/2.jpg') }}" alt="Pink Rose">
+            <h3>Pink Rose</h3>
+            <p>A cute handmade flower filled with love.</p>
+            <h2>₹50</h2>
+
+            <button class="add-cart-btn"
+                data-name="Pink Rose"
+                data-price="50"
+                data-image="{{ url_for('static', filename='images/2.jpg') }}">
+                Add to Cart 🛒
+            </button>
+        </div>
+
+        <!-- RED ROSE -->
+        <div class="flower-card">
+            <img src="{{ url_for('static', filename='images/3.jpg') }}" alt="Red Rose">
+            <h3>Red Rose</h3>
+            <p>A beautiful handmade red rose crafted with soft pipe cleaners.</p>
+            <h2>₹50</h2>
+
+            <button class="add-cart-btn"
+                data-name="Red Rose"
+                data-price="50"
+                data-image="{{ url_for('static', filename='images/3.jpg') }}">
+                Add to Cart 🛒
+            </button>
+        </div>
+
+        <!-- RED AND WHITE BLOSSOM -->
+        <div class="flower-card">
+            <img src="{{ url_for('static', filename='images/4.jpg') }}" alt="Red and White Blossom">
+            <h3>Red & White Blossom</h3>
+            <p>An elegant handmade flower with beautiful red and white petals.</p>
+            <h2>₹100</h2>
+
+            <button class="add-cart-btn"
+                data-name="Red & White Blossom"
+                data-price="100"
+                data-image="{{ url_for('static', filename='images/4.jpg') }}">
+                Add to Cart 🛒
+            </button>
+        </div>
+
+        <!-- CHRISTMAS STAR FLOWER -->
+        <div class="flower-card">
+            <img src="{{ url_for('static', filename='images/5.jpg') }}" alt="Christmas Star Flower">
+            <h3>Christmas Star Flower</h3>
+            <p>A lovely star-shaped flower, perfect for decorations and gifting.</p>
+            <h2>₹150</h2>
+
+            <button class="add-cart-btn"
+                data-name="Christmas Star Flower"
+                data-price="150"
+                data-image="{{ url_for('static', filename='images/5.jpg') }}">
+                Add to Cart 🛒
+            </button>
+        </div>
+
+        <!-- FLOWER KIT -->
+        <div class="flower-card">
+            <img src="{{ url_for('static', filename='images/6.webp') }}" alt="Pipe Cleaner Flower Kit">
+            <h3>Pipe Cleaner Flower Kit</h3>
+            <p>Create your own beautiful handmade flowers with this craft kit.</p>
+            <h2>₹80</h2>
+
+            <button class="add-cart-btn"
+                data-name="Pipe Cleaner Flower Kit"
+                data-price="80"
+                data-image="{{ url_for('static', filename='images/6.webp') }}">
+                Add to Cart 🛒
+            </button>
+        </div>
+
+    </div>
+
+    <br><br>
+
+    <a href="{{ url_for('home') }}" class="order-btn">
+        ← Back to Home
+    </a>
+
+</section>
+<a href="{{ url_for('cart') }}" class="cart-link">
+    🛒 Cart (<span id="cart-count">0</span>)
+</a>
+
+<script src="{{ url_for('static', filename='cart.js') }}"></script>
+
+</body>
+</html>

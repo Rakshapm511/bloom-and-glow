@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign In | Bloom & Glow</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #fffaf7;
+            font-family: Georgia, serif;
+            color: #684c4c;
+        }
+
+        .login-box {
+            max-width: 400px;
+            margin: 70px auto;
+            padding: 35px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px #e9cfd4;
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #b75d78;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin: 12px 0;
+            border: 1px solid #d9a8b7;
+            border-radius: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: #bd6c85;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        a {
+            color: #b75d78;
+        }
+
+        .message {
+            color: #a33;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <h1>Bloom & Glow 🌷</h1>
+    <h2>Welcome Back!</h2>
+
+    {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('login') }}">
+
+        <input
+            type="hidden"
+            name="next"
+            value="{{ next_page }}">
+
+        <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            required>
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required>
+
+        <button type="submit">Sign In</button>
+
+    </form>
+
+    <p>New to Bloom & Glow?</p>
+
+    <a href="{{ url_for('signup') }}">Create an Account</a>
+
+    <p>
+        <a href="{{ url_for('home') }}">Back to Home</a>
+    </p>
+
+</div>
+
+</body>
+</html>

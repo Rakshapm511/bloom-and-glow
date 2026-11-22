@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews | Bloom & Glow</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Georgia, serif;
+            background: #fffaf7;
+            color: #684c4c;
+            text-align: center;
+        }
+
+        header {
+            background: #fce8e8;
+            padding: 25px;
+        }
+
+        h1, h2, h3 {
+            color: #b75d78;
+        }
+
+        .container {
+            padding: 40px 8%;
+        }
+
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .review-card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px #e9cfd4;
+        }
+
+        .stars {
+            color: #e6a23c;
+            font-size: 23px;
+        }
+
+        .back {
+            display: inline-block;
+            margin: 30px;
+            padding: 12px 25px;
+            background: #bd6c85;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+        }
+
+        @media(max-width: 768px) {
+            .reviews {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Bloom & Glow 🌷</h1>
+    <h2>Customer Reviews 💗</h2>
+    <p>Our happiness comes from your happiness!</p>
+</header>
+
+<div class="container">
+
+    <div class="reviews">
+
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <h3>Beautiful Flowers!</h3>
+            <p>The flowers are beautiful and carefully handmade. Loved them!</p>
+            <strong>Happy Customer</strong>
+        </div>
+
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <h3>Lovely Candles!</h3>
+            <p>The candle design is amazing. Perfect for gifting!</p>
+            <strong>Happy Customer</strong>
+        </div>
+
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <h3>Wonderful Bouquet!</h3>
+            <p>Such a cute bouquet. I really loved the handmade work!</p>
+            <strong>Happy Customer</strong>
+        </div>
+
+    </div>
+
+    <a href="{{ url_for('home') }}" class="back">← Back to Home</a>
+
+</div>
+
+</body>
+</html>

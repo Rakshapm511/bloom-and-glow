@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Bloom & Glow</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff7fa;
+            color: #333;
+        }
+
+        header {
+            background: #5b2945;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        header h1 {
+            font-size: 25px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .welcome h2 {
+            color: #8b3d65;
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(90, 35, 65, 0.10);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: #8b3d65;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 12px 0 7px;
+            font-weight: bold;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e5b8cc;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #a64d78;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .order-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+        }
+
+        .total {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            font-size: 19px;
+            font-weight: bold;
+            color: #8b3d65;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .payment-option input {
+            width: auto;
+        }
+
+        .place-order {
+            width: 100%;
+            padding: 15px;
+            background: #8b3d65;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .place-order:hover {
+            background: #642b49;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            color: #8b3d65;
+            text-decoration: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #5b2945;
+            color: white;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 700px) {
+            .checkout-layout {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🌷 Bloom & Glow</h1>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('cart') }}">My Cart</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+</header>
+
+<div class="container">
+
+    <div class="welcome">
+        <h2>Complete Your Order 🌷</h2>
+        <p>Welcome, <strong>{{ session.get('name', 'Customer') }}</strong>!</p>
+        <p>You are signed in. Please provide your delivery details.</p>
+    </div>
+
+    <form action="{{ url_for('place_order') }}" method="POST">
+
+        <div class="checkout-layout">
+
+            <div>
+                <div class="card">
+                    <h3>📦 Delivery Details</h3>
+
+                    <label for="customer_name">Full Name</label>
+                    <input type="text" id="customer_name"
+                           name="customer_name"
+                           value="{{ session.get('name', '') }}"
+                           required>
+
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone"
+                           pattern="[0-9]{10}"
+                           maxlength="10"
+                           placeholder="Enter 10-digit phone number"
+                           required>
+
+                    <label for="address">House Number / Street Address</label>
+                    <textarea
+                    id="address"
+                    name="address"
+                    placeholder="Enter house number and street"
+                    required></textarea>
+                    <label for="city">City / Detected Full Address</label>
+                    <input
+                        type="text"
+                        id="city"
+                        name="city"
+                        placeholder="Your detected location will appear here"
+                         required>
+                    <button type="button" id="locationBtn" class="place-order">
+                 📍 Detect My Current Address
+                   </button>
+                   <p id="locationStatus" style="margin-top:12px;color:#8b3d65;"></p>
+                   <input type="hidden" id="latitude" name="latitude">
+                   <input type="hidden" id="longitude" name="longitude">
+
+                    <label for="pincode">PIN Code</label>
+                    <input type="text" id="pincode" name="pincode"
+                           pattern="[0-9]{6}"
+                           maxlength="6"
+                           placeholder="Enter 6-digit PIN code"
+                           required>
+                </div>
+
+                <div class="card">
+                    <h3>Select Payment Method</h3>
+
+    <label>
+        <input type="radio"
+               name="payment_method"
+               value="COD"
+               checked>
+        Cash on Delivery
+    </label>
+
+    <br><br>
+
+    <label>
+        <input type="radio"
+               name="payment_method"
+               value="UPI">
+        UPI Payment
+    </label>
+
+    <div id="upiPayment" style="display:none; margin-top:20px;">
+
+        <h3>Bloom and Glow UPI Payment</h3>
+
+        <p><strong>UPI ID:</strong> maheshsudha794@oksbi</p>
+
+        <p><strong>Payee:</strong> Bloom and Glow</p>
+
+        <p><strong>Amount:</strong> ₹{{ "%.2f"|format(total) }}</p>
+
+        <a href="{{ upi_link }}"
+           class="place-order"
+           style="display:inline-block; text-decoration:none;">
+            Pay with UPI
+        </a>
+
+        <p style="font-size:13px;">
+            After completing payment, return to this page
+            and click Place Order.
+        </p>
+
+    </div>
+
+</div>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <h3>🛍️ Order Summary</h3>
+
+                    {% if cart_items %}
+                        {% for item in cart_items %}
+                            <div class="order-row">
+                                <span>
+                                    {{ item.name }} × {{ item.quantity }}
+                                </span>
+                                <span>
+                                    ₹{{ "%.2f"|format(item.price * item.quantity) }}
+                                </span>
+                            </div>
+                        {% endfor %}
+
+                        <div class="order-row">
+                            <span>Delivery</span>
+                            <span>Free</span>
+                        </div>
+
+                        <div class="order-row total">
+                            <span>Total</span>
+                            <span>₹{{ "%.2f"|format(total) }}</span>
+                        </div>
+                    {% else %}
+                        <p>Your cart is empty.</p>
+                        <a href="{{ url_for('home') }}" class="back">
+                            Continue Shopping
+                        </a>
+                    {% endif %}
+                </div>
+
+                {% if cart_items %}
+                    <button type="submit" class="place-order">
+                        Place Order 🌸
+                    </button>
+                {% endif %}
+
+                <a href="{{ url_for('cart') }}" class="back">
+                    ← Back to Cart
+                </a>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<footer>
+    <p>© 2026 Bloom & Glow | Made with 💗</p>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+
+    // Stop repeated syncing after the successful reload
+    if (sessionStorage.getItem("bloomCartSynced") === "1") {
+        sessionStorage.removeItem("bloomCartSynced");
+        return;
+    }
+
+    const cart = JSON.parse(
+        localStorage.getItem("bloomCart") || "[]"
+    );
+
+    if (cart.length === 0) {
+        return;
+    }
+
+    try {
+        const response = await fetch("/sync-cart", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ cart: cart })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+            sessionStorage.setItem("bloomCartSynced", "1");
+            window.location.reload();
+        } else {
+            alert(result.message || "Unable to sync your cart.");
+        }
+
+    } catch (error) {
+        console.error("Cart sync error:", error);
+        alert("Unable to connect to the server. Please try again.");
+    }
+});
+// location accessing
+document.getElementById("locationBtn").addEventListener("click", function () {
+
+    const button = this;
+    const status = document.getElementById("locationStatus");
+
+    if (!navigator.geolocation) {
+        status.textContent = "Your browser does not support GPS location.";
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Detecting location...";
+    status.textContent = "Please allow location permission...";
+
+    navigator.geolocation.getCurrentPosition(
+
+        async function (position) {
+
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            const accuracy = position.coords.accuracy;
+
+            document.getElementById("latitude").value = latitude;
+            document.getElementById("longitude").value = longitude;
+
+            try {
+
+                status.textContent = "Finding your complete address...";
+
+                const response = await fetch("/reverse-geocode", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        latitude: latitude,
+                        longitude: longitude
+                    })
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    throw new Error(result.message || "Address not found.");
+                }
+
+                // Put the complete detected address in the City field
+                document.getElementById("city").value =
+                    result.full_address;
+
+                status.innerHTML =
+                    "✅ Address detected successfully!<br>" +
+                    "GPS accuracy: approximately " +
+                    Math.round(accuracy) + " metres.";
+
+            } catch (error) {
+
+                status.textContent =
+                    "Could not detect the address. Please enter it manually.";
+
+                console.error(error);
+
+            } finally {
+
+                button.disabled = false;
+                button.textContent = "📍 Detect My Current Address";
+            }
+        },
+
+        function (error) {
+
+            if (error.code === 1) {
+                status.textContent =
+                    "Please allow location permission in your browser.";
+            } else if (error.code === 2) {
+                status.textContent =
+                    "Your current location is unavailable.";
+            } else {
+                status.textContent =
+                    "Location request timed out. Please try again.";
+            }
+
+            button.disabled = false;
+            button.textContent = "📍 Detect My Current Address";
+        },
+
+        {
+            enableHighAccuracy: true,
+            timeout: 20000,
+            maximumAge: 0
+        }
+    );
+});
+const paymentOptions = document.querySelectorAll(
+    'input[name="payment_method"]'
+);
+
+const upiPayment = document.getElementById("upiPayment");
+
+paymentOptions.forEach(option => {
+    option.addEventListener("change", function () {
+
+        if (this.value === "UPI" && this.checked) {
+            upiPayment.style.display = "block";
+        } else if (this.checked) {
+            upiPayment.style.display = "none";
+        }
+
+    });
+});
+</script>
+</body>
+</html>

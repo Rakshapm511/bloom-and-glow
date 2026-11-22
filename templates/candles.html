@@ -1,0 +1,510 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Handmade Candles | Bloom & Glow</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .collection {
+            min-height: 100vh;
+            padding: 100px 7%;
+            text-align: center;
+            background: #fff7f5;
+        }
+
+        .collection-tag {
+            color: #c87991;
+            letter-spacing: 4px;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .collection h2 {
+            font-family: Georgia, serif;
+            font-size: clamp(32px, 4vw, 48px);
+            color: #593d46;
+            margin-bottom: 20px;
+        }
+
+        .collection-subtitle {
+            color: #806d70;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 70px;
+        }
+
+        .collection-container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 40px;
+            max-width: 1250px;
+            margin: 0 auto;
+            align-items: stretch;
+        }
+
+        .candle-card {
+            background: #ffffff;
+            padding: 22px;
+            border-radius: 24px;
+            box-shadow: 0 8px 30px rgba(180, 120, 140, 0.10);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .candle-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(180, 120, 140, 0.18);
+        }
+
+        .candle-card img {
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+            border-radius: 18px;
+            margin-bottom: 25px;
+        }
+
+        .candle-card h3 {
+            color: #593d46;
+            font-family: Georgia, serif;
+            font-size: 23px;
+            margin-bottom: 15px;
+        }
+
+        .candle-card p {
+            color: #806d70;
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .candle-card h2 {
+            color: #b75d78;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .add-cart-btn {
+            background: #bd6c85;
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 30px;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .add-cart-btn:hover {
+            background: #93445f;
+            transform: scale(1.04);
+        }
+
+        .cart-link {
+            position: fixed;
+            top: 20px;
+            right: 25px;
+            z-index: 1000;
+            background: #bd6c85;
+            color: white;
+            padding: 13px 22px;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px #e9cfd4;
+        }
+
+        .back-btn {
+            display: inline-block;
+            align-self: center;
+            background: #d77e9b;
+            color: white;
+            text-decoration: none;
+            padding: 15px 32px;
+            border-radius: 30px;
+            font-size: 15px;
+            transition: 0.3s ease;
+            margin-top: 35px;
+        }
+
+        .back-btn:hover {
+            background: #a95775;
+            transform: scale(1.04);
+        }
+
+        @media (max-width: 950px) {
+            .collection-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .candle-card img {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .collection {
+                padding: 65px 7%;
+            }
+
+            .collection-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .collection h2 {
+                font-size: 30px;
+            }
+
+            .collection-subtitle {
+                font-size: 15px;
+                margin-bottom: 40px;
+            }
+
+            .candle-card {
+                padding: 18px;
+            }
+
+            .candle-card img {
+                height: 320px;
+            }
+
+            .candle-card h3 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<section class="collection" id="collection">
+
+    <p class="collection-tag">
+        OUR HANDMADE CREATIONS ♡
+    </p>
+
+    <h2>Explore Our Candle Collection 🕯️</h2>
+
+    <p class="collection-subtitle">
+        Beautiful handmade candles, created with warmth,
+        creativity and love.
+    </p>
+
+    <div class="collection-container">
+
+        <!-- CANDLE 1 -->
+        <div class="candle-card">
+
+            <img src="{{ url_for('static', filename='images/ca1.webp') }}"
+                 alt="Natural Aroma Candle Set">
+
+            <h3>Natural Aroma Candle Set</h3>
+
+            <p>
+                Beautiful decorative candles with natural-inspired
+                decorations like dried rose petals, coffee beans
+                and orange slices. Each order includes any one
+                candle design from our collection.
+
+                <strong style="color: #a01010;">
+                    The design will be selected randomly.
+                </strong>
+            </p>
+
+            <h2>Price: ₹150</h2>
+
+            <button class="add-cart-btn"
+                data-name="Natural Aroma Candle Set"
+                data-price="150"
+                data-image="{{ url_for('static', filename='images/ca1.webp') }}">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+        <!-- CANDLE 2 -->
+        <div class="candle-card">
+
+            <img src="{{ url_for('static', filename='images/ca2.jpg') }}"
+                 alt="Petal Glow Decorative Flower Candle">
+
+            <h3>Petal Glow – Decorative Flower Candle Collection</h3>
+
+            <p>
+                Beautifully designed in different colours and
+                floral shapes, these candles are perfect for
+                home decoration, bedroom styling, gifting,
+                festive decorations and creating a cosy atmosphere.
+
+                <strong style="color: #a01010;">
+                    Each order includes only one colour design
+                    candle from our collection.
+                </strong>
+            </p>
+
+            <h2>Price: ₹150</h2>
+
+            <button class="add-cart-btn"
+                data-name="Petal Glow - Decorative Flower Candle"
+                data-price="150"
+                data-image="{{ url_for('static', filename='images/ca2.jpg') }}">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+        <!-- CANDLE 3 -->
+        <div class="candle-card">
+
+            <img src="{{ url_for('static', filename='images/ca3.jpeg') }}"
+                 alt="Elegant Glow Premium Decorative Candle">
+
+            <h3>Elegant Glow – Premium Decorative Candle</h3>
+
+            <p>
+                Beautifully crafted candles featuring elegant
+                printed tin containers, stylish gradient designs
+                and rustic floral decorations.
+
+                <strong style="color: #a01010;">
+                    Each order includes only one candle.
+                </strong>
+            </p>
+
+            <h2>Price: ₹100</h2>
+
+            <button class="add-cart-btn"
+                data-name="Elegant Glow - Premium Decorative Candle"
+                data-price="100"
+                data-image="{{ url_for('static', filename='images/ca3.jpeg') }}">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+        <!-- CANDLE 4 -->
+        <div class="candle-card">
+
+            <img src="{{ url_for('static', filename='images/ca4.jpg') }}"
+                 alt="Ombre Bliss Gradient Pillar Candle">
+
+            <h3>Ombre Bliss – Two-Tone Gradient Pillar Candle</h3>
+
+            <p>
+                Pillar candles featuring a stunning two-tone
+                gradient colour combination, blending soft
+                white with rich red shades.
+            </p>
+
+            <h2>Price: ₹100</h2>
+
+            <button class="add-cart-btn"
+                data-name="Ombre Bliss - Two-Tone Gradient Pillar Candle"
+                data-price="100"
+                data-image="{{ url_for('static', filename='images/ca4.jpg') }}">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+        <!-- CANDLE 5 -->
+        <div class="candle-card">
+
+            <img src="{{ url_for('static', filename='images/ca5.webp') }}"
+                 alt="Rustic Elegance Floral Pillar Candle">
+
+            <h3>Rustic Elegance – Floral Decorated Pillar Candle</h3>
+
+            <p>
+                An elegant handmade-style pillar candle decorated
+                with delicate dried flowers, natural jute rope
+                and a beautiful flowing fabric ribbon.
+            </p>
+
+            <h2>Price: ₹100</h2>
+
+            <button class="add-cart-btn"
+                data-name="Rustic Elegance - Floral Decorated Pillar Candle"
+                data-price="100"
+                data-image="{{ url_for('static', filename='images/ca5.webp') }}">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+        <!-- CANDLE 6 -->
+        <div class="candle-card">
+
+            <img src="{{ url_for('static', filename='images/ca6.webp') }}"
+                 alt="Lotus Flower Candles">
+
+            <h3>Lotus Flower Candles 🌸</h3>
+
+            <p>
+                Beautiful lotus-shaped candles in lovely colours,
+                perfect for home decoration, gifting, festivals
+                and special occasions. Add a touch of beauty
+                to your space!
+            </p>
+
+            <h2>Price: ₹150</h2>
+
+            <button class="add-cart-btn"
+                data-name="Lotus Flower Candles"
+                data-price="150"
+                data-image="{{ url_for('static', filename='images/ca6.webp') }}">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+        <!-- CANDLE 7 -->
+        <div class="candle-card">
+
+            <img src="{{ url_for('static', filename='images/ca7.jpg') }}"
+                 alt="Strawberry Dessert Candle">
+
+            <h3>Romantic Bliss – Strawberry Dessert Candle 🍓</h3>
+
+            <p>
+                Adorably designed in a beautiful dessert glass
+                with creamy pink and white layers and a cute
+                strawberry topping, these candles bring a sweet
+                and aesthetic touch to your space.
+
+                <strong style="color: #221e8b;">
+                    A perfect blend of fragrance, beauty and elegance.
+                </strong>
+            </p>
+
+            <h2>Price: ₹250</h2>
+
+            <button class="add-cart-btn"
+                data-name="Romantic Bliss - Strawberry Dessert Candle"
+                data-price="250"
+                data-image="{{ url_for('static', filename='images/ca7.jpg') }}">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+        <!-- CANDLE 8 -->
+        <div class="candle-card">
+
+            <img src="{{ url_for('static', filename='images/ca8.webp') }}"
+                 alt="Eternal Bloom Flower Gel Candle">
+
+            <h3>Eternal Bloom – Personalized Flower Gel Candle Collection 🌸</h3>
+
+            <p>
+                Beautifully crafted with delicate dried flowers
+                and elegant transparent gel wax, these candles
+                add a luxurious and romantic touch to any space.
+                Perfect for home decoration, wedding gifts,
+                special occasions and creating a warm, cosy atmosphere.
+
+                <strong style="color: #a01010;">
+                    Each candle features beautiful floral detailing
+                    and can be a lovely personalised keepsake.
+                </strong>
+            </p>
+
+            <h2>Price: ₹200</h2>
+
+            <button class="add-cart-btn"
+                data-name="Eternal Bloom - Personalized Flower Gel Candle"
+                data-price="200"
+                data-image="{{ url_for('static', filename='images/ca8.webp') }}">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+        <!-- CANDLE 9 -->
+        <div class="candle-card">
+
+            <img src="{{ url_for('static', filename='images/ca9.jpg') }}"
+                 alt="Love Text Personalized Decorative Candle">
+
+            <h3>Love Text – Personalised Decorative Candle Mould with 3D "#your text" Design</h3>
+
+            <p>
+                Beautifully designed candle mould featuring
+                a stylish 3D "#your text" design, perfect for
+                creating customised candles for gifting
+                and special occasions.
+            </p>
+
+            <h2>Price: ₹100</h2>
+
+            <button class="add-cart-btn"
+                data-name="Love Text - Personalized Decorative Candle"
+                data-price="100"
+                data-image="{{ url_for('static', filename='images/ca9.jpg') }}">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+        <!-- CANDLE 10 -->
+        <div class="candle-card">
+
+            <img src="{{ url_for('static', filename='images/ca10.webp') }}"
+                 alt="Sunshine Bliss Sunflower Candle">
+
+            <h3>Sunshine Bliss – Decorative Sunflower Candle Collection</h3>
+
+            <p>
+                Beautifully crafted sunflower-shaped candles
+                in elegant glass jars, featuring vibrant yellow
+                petals and a detailed brown centre.
+
+                <strong style="color: #a01010;">
+                    Each order includes one sunflower candle
+                    in a glass jar.
+                </strong>
+            </p>
+
+            <h2>Price: ₹150</h2>
+
+            <button class="add-cart-btn"
+                data-name="Sunshine Bliss - Decorative Sunflower Candle"
+                data-price="150"
+                data-image="{{ url_for('static', filename='images/ca10.webp') }}">
+                Add to Cart 🛒
+            </button>
+
+        </div>
+
+    </div>
+
+    <a href="{{ url_for('home') }}" class="back-btn">
+        ← Back to Home
+    </a>
+
+</section>
+
+<a href="{{ url_for('cart') }}" class="cart-link">
+    🛒 Cart (<span id="cart-count">0</span>)
+</a>
+
+<script src="{{ url_for('static', filename='cart.js') }}"></script>
+
+</body>
+</html>
