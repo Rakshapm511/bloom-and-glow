@@ -166,6 +166,112 @@
                 text-align: center;
             }
         }
+        
+/* UPI payment container */
+
+.upi-container {
+    margin-top: 20px;
+    padding: 25px;
+    background: #fff7fa;
+    border: 2px solid #e5b8cc;
+    border-radius: 15px;
+    text-align: center;
+    animation: fadeIn .5s ease;
+}
+
+.upi-container h3 {
+    color: #8b3d65;
+    margin-bottom: 12px;
+}
+
+.upi-description {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* QR code design */
+
+.qr-box {
+    display: inline-block;
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.12);
+    margin: 10px auto;
+}
+
+.upi-qr {
+    width: 260px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.upi-name {
+    font-size: 19px;
+    font-weight: bold;
+    color: #5b2945;
+    margin: 15px 0;
+}
+
+.upi-amount {
+    margin: 18px 0;
+    padding: 14px;
+    background: #f5e4ec;
+    border-radius: 10px;
+    color: #8b3d65;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.upi-instruction {
+    text-align: left;
+    line-height: 2;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.upi-warning {
+    color: #d97706;
+    font-size: 13px;
+    margin: 15px 0;
+}
+
+.upi-mobile-pay {
+    display: inline-block;
+    background: #8b3d65;
+    color: white;
+    padding: 13px 25px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: .3s;
+}
+
+.upi-mobile-pay:hover {
+    background: #642b49;
+    transform: translateY(-3px);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media(max-width: 500px) {
+    .upi-qr {
+        width: 220px;
+    }
+}
+
     </style>
 </head>
 
@@ -250,12 +356,49 @@
 
     <br><br>
 
-    <label>
-        <input type="radio"
-               name="payment_method"
-               value="UPI">
-        UPI Payment
-    </label>
+<div id="upiPayment" class="upi-container" style="display:none;">
+
+    <h3>💳 Pay Using UPI</h3>
+
+    <p class="upi-description">
+        Scan this QR code using any UPI payment application.
+    </p>
+
+    <!-- Your uploaded QR code -->
+    <div class="qr-box">
+        <img
+            src="{{ url_for('static', filename='images/upi-qr.jpeg') }}"
+            alt="Bloom and Glow UPI Payment QR Code"
+            class="upi-qr"
+        >
+    </div>
+
+    <p class="upi-name">Raksha Mahesh</p>
+
+    <p><strong>UPI ID:</strong> maheshsudha794@oksbi</p>
+
+    <div class="upi-amount">
+        Amount to Pay: ₹{{ "%.2f"|format(total) }}
+    </div>
+
+    <p class="upi-instruction">
+        1. Open Google Pay / PhonePe / Paytm on your mobile.<br>
+        2. Select Scan QR Code.<br>
+        3. Scan the QR code displayed on your laptop.<br>
+        4. Verify the payment details and complete payment.
+    </p>
+
+    <p class="upi-warning">
+        ⚠️ Complete your payment before placing the order.
+    </p>
+
+    <a href="{{ upi_link }}" class="upi-mobile-pay">
+        Open UPI Payment App
+    </a>
+
+</div>
+
+    
 
     <div id="upiPayment" style="display:none; margin-top:20px;">
 
@@ -469,23 +612,35 @@ document.getElementById("locationBtn").addEventListener("click", function () {
         }
     );
 });
+
 const paymentOptions = document.querySelectorAll(
     'input[name="payment_method"]'
 );
 
 const upiPayment = document.getElementById("upiPayment");
 
+function updatePaymentMethod() {
+
+    const selected = document.querySelector(
+        'input[name="payment_method"]:checked'
+    );
+
+    if (selected && selected.value === "UPI") {
+
+        upiPayment.style.display = "block";
+
+    } else {
+
+        upiPayment.style.display = "none";
+
+    }
+}
+
 paymentOptions.forEach(option => {
-    option.addEventListener("change", function () {
-
-        if (this.value === "UPI" && this.checked) {
-            upiPayment.style.display = "block";
-        } else if (this.checked) {
-            upiPayment.style.display = "none";
-        }
-
-    });
+    option.addEventListener("change", updatePaymentMethod);
 });
+updatePaymentMethod();
+
 </script>
 </body>
 </html>
